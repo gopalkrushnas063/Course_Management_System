@@ -1,8 +1,10 @@
-package com.masai.usecases;
+package com.masai.execute_section;
 
 import com.masai.dao.AdminDao;
 import com.masai.dao.AdminDaoImpl;
 import com.masai.exception.AdminException;
+import com.masai.usecases.AddCourseDetailsUseCase;
+import com.masai.usecases.UpdateCourseDetailsUseCase;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -73,6 +75,24 @@ public class UserActivities {
                            "14. Generate report for every batch" +'\n'+
                            "15. Logout" +'\n'+
                            "----------------------------------------------");
+
+        int choice = 0;
+        try{
+            choice = sc.nextInt();
+        }catch (InputMismatchException e){
+            System.out.println("Invalid input..!");
+            System.out.println("Try Again...");
+            UserActivities.admin();
+        }
+        switch (choice){
+            case 1:
+                AddCourseDetailsUseCase.addCourse();
+                break;
+            case 2:
+                UpdateCourseDetailsUseCase.updateCourse();
+                break;
+
+        }
     }
 
     public static void faculty(){
