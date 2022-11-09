@@ -11,10 +11,13 @@ import java.util.Scanner;
 public class UserActivities {
     public static void selectUser() {
         Scanner sc = new Scanner(System.in);
-        System.out.println();
-        System.out.println("Choose an options - \n" + "1. Admin Login\n" + "2. Faculty Login");
-
-        System.out.println("------------------------------------------------");
+        System.out.println("+--------------------------------------------------------------------------+\n" +
+                           "|                          Course Monitoring System                        |\n" +
+                           "+--------------------------------------------------------------------------+");
+        System.out.println("|  Choose an options :                                                     |");
+        System.out.println("|  1. Admin Login                                                          |");
+        System.out.println("|  2. Faculty Login                                                        |");
+        System.out.println("+--------------------------------------------------------------------------+");
 
         int choice = 0;
         try{
@@ -58,22 +61,23 @@ public class UserActivities {
     public static void admin(){
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("1.  Create Course" +'\n'+
-                           "2.  Update Course" +'\n'+
-                           "3.  View Course" +'\n'+
-                           "4.  Create Batch" +'\n'+
-                           "5.  Update Batch Details" +'\n'+
-                           "6.  View Batch Details By Course Name" +'\n'+
-                           "7.  Register Faculty" +'\n'+
-                           "8.  Update Faculty" +'\n'+
-                           "9.  View Faculty Details" +'\n'+
-                           "10. Create Course Plan" +'\n'+
-                           "11. Update Course Plan" +'\n'+
-                           "12. View Course Plan" +'\n'+
-                           "13. View the Day wise update of every batch" +'\n'+
-                           "14. Generate report for every batch" +'\n'+
-                           "15. Logout" +'\n'+
-                           "----------------------------------------------");
+        System.out.println("+-========================================================================-+");
+        System.out.println("| 1.  Create Course                                                        |");
+        System.out.println("| 2.  Update Course                                                        |");
+        System.out.println("| 3.  View Course                                                          |");
+        System.out.println("| 4.  Create Batch                                                         |");
+        System.out.println("| 5.  Update Batch Details                                                 |");
+        System.out.println("| 6.  View Batch Details By Course Name                                    |");
+        System.out.println("| 7.  Register Faculty                                                     |");
+        System.out.println("| 8.  Update Faculty                                                       |");
+        System.out.println("| 9.  View Faculty Details                                                 |");
+        System.out.println("| 10. Create Course Plan                                                   |");
+        System.out.println("| 11. Update Course Plan                                                   |");
+        System.out.println("| 12. View Course Plan                                                     |");
+        System.out.println("| 13. View the Day wise update of every batch                              |");
+        System.out.println("| 14. Generate report for every batch                                      |");
+        System.out.println("| 15. Logout                                                               |");
+        System.out.println("+-========================================================================-+");
 
         int choice = 0;
         try{
@@ -99,9 +103,10 @@ public class UserActivities {
             case 7:
                 RegisterFacultyUseCase.registerFaculty();
                 break;
-
-
+            case 15:
+                UserActivities.selectUser();
         }
+        UserActivities.admin();
     }
 
     public static void faculty(){
