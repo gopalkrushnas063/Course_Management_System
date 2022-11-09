@@ -34,7 +34,7 @@ public class AdminDaoImpl implements AdminDao{
                 result = true;
 
             }else {
-                System.out.println("Incorrect Credential");
+                System.out.println("Invalid Credential....!");
             }
 
         }catch (SQLException e){
