@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class AdminDaoImpl implements AdminDao{
@@ -156,5 +158,31 @@ public class AdminDaoImpl implements AdminDao{
             e.printStackTrace();
         }
         return message;
+    }
+
+    @Override
+    public List<Course> viewCourse() throws CourseException {
+        List<Course> courses = new ArrayList<>();
+        try(Connection conn = DBUtility.provideConnection()){
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM COURSE");
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                Course course = new Course();
+                course.setCourseID(rs.getInt("CourseID"));
+                course.setCourseName(rs.getString("Course_Name"));
+                course.setFee(rs.getInt("fee"));
+                course.setCourseDescription(rs.getString("Course_Description"));
+
+                courses.add(course);
+            }
+        }catch (SQLException e){
+            throw new CourseException(e.getMessage());
+        }
+
+        if(courses.size() == 0){
+            throw new CourseException("No any course found");
+        }
+        return courses;
     }
 }

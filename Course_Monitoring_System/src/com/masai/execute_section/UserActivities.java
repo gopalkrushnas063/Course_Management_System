@@ -5,6 +5,7 @@ import com.masai.dao.AdminDaoImpl;
 import com.masai.exception.AdminException;
 import com.masai.usecases.AddCourseDetailsUseCase;
 import com.masai.usecases.UpdateCourseDetailsUseCase;
+import com.masai.usecases.ViewCoursesUseCase;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -90,6 +91,9 @@ public class UserActivities {
                 break;
             case 2:
                 UpdateCourseDetailsUseCase.updateCourse();
+                break;
+            case 3:
+                ViewCoursesUseCase.viewCourse();
                 break;
 
         }
