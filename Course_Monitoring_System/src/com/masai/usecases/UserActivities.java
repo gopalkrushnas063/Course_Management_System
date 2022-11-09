@@ -57,9 +57,22 @@ public class UserActivities {
     public static void admin(){
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("1. Create Course" +'\n'+
-                           "2. Update Course" +'\n'+
-                           "3. View Course");
+        System.out.println("1.  Create Course" +'\n'+
+                           "2.  Update Course" +'\n'+
+                           "3.  View Course" +'\n'+
+                           "4.  Create Batch" +'\n'+
+                           "5.  Update Batch Details" +'\n'+
+                           "6.  View Batch Details By Course Name" +'\n'+
+                           "7.  Register Faculty" +'\n'+
+                           "8.  Update Faculty" +'\n'+
+                           "9.  View Faculty Details" +'\n'+
+                           "10. Create Course Plan" +'\n'+
+                           "11. Update Course Plan" +'\n'+
+                           "12. View Course Plan" +'\n'+
+                           "13. View the Day wise update of every batch" +'\n'+
+                           "14. Generate report for every batch" +'\n'+
+                           "15. Logout" +'\n'+
+                           "----------------------------------------------");
     }
 
     public static void faculty(){
