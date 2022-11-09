@@ -3,9 +3,7 @@ package com.masai.execute_section;
 import com.masai.dao.AdminDao;
 import com.masai.dao.AdminDaoImpl;
 import com.masai.exception.AdminException;
-import com.masai.usecases.AddCourseDetailsUseCase;
-import com.masai.usecases.UpdateCourseDetailsUseCase;
-import com.masai.usecases.ViewCoursesUseCase;
+import com.masai.usecases.*;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -95,6 +93,13 @@ public class UserActivities {
             case 3:
                 ViewCoursesUseCase.viewCourse();
                 break;
+            case 4:
+                AddBatchDetailsUseCase.addBatch();
+                break;
+            case 7:
+                RegisterFacultyUseCase.registerFaculty();
+                break;
+
 
         }
     }

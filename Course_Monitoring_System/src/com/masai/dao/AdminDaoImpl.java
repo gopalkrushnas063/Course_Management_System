@@ -1,9 +1,13 @@
 package com.masai.dao;
 
 import com.masai.exception.AdminException;
+import com.masai.exception.BatchException;
 import com.masai.exception.CourseException;
+import com.masai.exception.FacultyException;
 import com.masai.model.Admin;
+import com.masai.model.Batch;
 import com.masai.model.Course;
+import com.masai.model.Faculty;
 import com.masai.utilities.DBUtility;
 
 import java.sql.Connection;
@@ -184,5 +188,60 @@ public class AdminDaoImpl implements AdminDao{
             throw new CourseException("No any course found");
         }
         return courses;
+    }
+
+    @Override
+    public String addBatch(Batch batch) throws BatchException {
+        String message = "Unable added batch details";
+
+        try(Connection conn = DBUtility.provideConnection()){
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO Batch(CourseID,FacultyID," +
+                                                              "NumberOfStudents,BatchStartDate,Duration) VALUES (?,?,?,?,?)");
+
+            ps.setInt(1,batch.getCourseID());
+            ps.setInt(2,batch.getFacultyID());
+            ps.setInt(3,batch.getNumberOfStudent());
+            ps.setString(4,batch.getBatchStartDate());
+            ps.setString(5,batch.getDuration());
+
+
+            int x = ps.executeUpdate();
+            if(x>0){
+                message = x+" Batch details updated successfully..";
+            }else{
+                throw new BatchException("Unable to added batch details");
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new BatchException(e.getMessage());
+        }
+        return message;
+    }
+
+    @Override
+    public String createFacultyID(Faculty faculty) throws FacultyException {
+        String message = "Not Registered..";
+
+        try(Connection con = DBUtility.provideConnection()){
+            PreparedStatement ps = con.prepareStatement("INSERT INTO FACULTY(FacultyName,FacultyAddress,Mobile,Email,Username,Password) VALUES (?,?,?,?,?,?)");
+            ps.setString(1,faculty.getFacultyName());
+            ps.setString(2,faculty.getFacultyAddress());
+            ps.setString(3,faculty.getMobile());
+            ps.setString(4,faculty.getEmail());
+            ps.setString(5,faculty.getUsername());
+            ps.setString(6,faculty.getPassword());
+
+
+            int x = ps.executeUpdate();
+            if(x>0){
+                message = x+" Faculty Registered Successfully";
+            }else{
+                throw new FacultyException("Registration Failed due to lack of details");
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new FacultyException(e.getMessage());
+        }
+        return message;
     }
 }
