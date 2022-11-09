@@ -1,4 +1,4 @@
-package com.masai.execute_section;
+package com.masai.app_execute_section;
 
 import com.masai.dao.AdminDao;
 import com.masai.dao.AdminDaoImpl;
@@ -100,10 +100,16 @@ public class UserActivities {
             case 4:
                 AddBatchDetailsUseCase.addBatch();
                 break;
+            case 5:
+                UpdateBatchDetailsUseCase.updateBatch();
+                break;
             case 7:
                 RegisterFacultyUseCase.registerFaculty();
                 break;
             case 15:
+                System.out.println("+--------------------------------------------------------------------------+");
+                System.out.println("| Admin Logout Successfully                                                |");
+                System.out.println("+--------------------------------------------------------------------------+");
                 UserActivities.selectUser();
         }
         UserActivities.admin();

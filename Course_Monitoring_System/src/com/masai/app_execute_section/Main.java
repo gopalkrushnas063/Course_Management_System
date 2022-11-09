@@ -1,4 +1,4 @@
-package com.masai.execute_section;
+package com.masai.app_execute_section;
 
 public class Main {
     public static void main(String[] args) {
@@ -6,3 +6,6 @@ public class Main {
         UserActivities.selectUser();
     }
 }
+
+
+

@@ -195,6 +195,108 @@ public class AdminDaoImpl implements AdminDao{
     }
 
     @Override
+    public String updateBatch(int batchid) throws BatchException {
+        String message = "Provide valid batch details";
+        Scanner sc = new Scanner(System.in);
+        boolean flag = true;
+        try(Connection conn = DBUtility.provideConnection()){
+            PreparedStatement ps = conn.prepareStatement("SELECT BATCHID FROM BATCH WHERE BATCHID=?");
+            ps.setInt(1,batchid);
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()){
+                while (flag){
+                    System.out.println("Please Select As Per Your Requirement : " +"\n"+
+                            "1. Update Course ID" +"\n"+
+                            "2. Update Faculty ID" +"\n"+
+                            "3. Update Number Of Students" +"\n"+
+                            "4. Update Batch Start Date" +"\n"+
+                            "5. Update Duration");
+                    int choice = sc.nextInt();
+                    switch (choice){
+                        case 1:
+                            System.out.println("Enter Course ID For Update :");
+                            int cid = sc.nextInt();
+                            PreparedStatement ps1 = conn.prepareStatement("UPDATE BATCH SET CourseID = ? WHERE BatchID = ?");
+                            ps1.setInt(1,cid);
+                            ps1.setInt(2,batchid);
+
+                            int x = ps1.executeUpdate();
+                            if(x>0){
+                                message = "Batch ID Updated Successfully....";
+                            }else{
+                                throw new BatchException("Unable to update Batch ID");
+                            }
+                            flag = false;
+                            break;
+                        case 2:
+                            System.out.println("Enter Faculty ID For Update :");
+                            int fid = sc.nextInt();
+                            PreparedStatement ps2 = conn.prepareStatement("UPDATE BATCH SET FacultyID = ? WHERE BatchID = ?");
+                            ps2.setInt(1,fid);
+                            ps2.setInt(2,batchid);
+
+                            int x2 = ps2.executeUpdate();
+                            if(x2>0){
+                                message = "Faculty ID Updated Successfully....";
+                            }else{
+                                throw new BatchException("Unable to update Faculty ID");
+                            }
+                            flag = false;
+                            break;
+                        case 3:
+                            System.out.println("Enter Student Number For Update :");
+                            int snumber = sc.nextInt();
+                            PreparedStatement ps3 = conn.prepareStatement("UPDATE BATCH SET NumberOfStudent = ? WHERE BatchID = ?");
+                            ps3.setInt(1,snumber);
+                            ps3.setInt(2,batchid);
+
+                            int x3 = ps3.executeUpdate();
+                            if(x3>0){
+                                message = "Student Number Updated Successfully....";
+                            }else{
+                                throw new BatchException("Unable to update student");
+                            }
+                            flag = false;
+                            break;
+                        case 4:
+                            System.out.println("Enter batch Start Date For Update (YYY-MM-DD) : ");
+                            String date = sc.next();
+                            PreparedStatement ps4 = conn.prepareStatement("UPDATE BATCH SET BatchStartDate = ? WHERE  BatchID = ?");
+                            ps4.setString(1,date);
+                            ps4.setInt(2,batchid);
+                            int x4 = ps4.executeUpdate();
+                            if(x4 > 0){
+                                message = "Batch Start Date Updated Successfully...";
+                            }else {
+                                throw new BatchException("Unable to update batch start date ");
+                            }
+                            flag = false;
+                            break;
+                        case 5:
+                            System.out.println("Enter Updated Duration : ");
+                            String duration = sc.next();
+                            PreparedStatement ps5 = conn.prepareStatement("UPDATE Batch SET Duration = ? WHERE BatchID = ?");
+                            ps5.setString(1,duration);
+                            ps5.setInt(2,batchid);
+                            int x5 = ps5.executeUpdate();
+                            if(x5>0){
+                                message = "Duration updated successfully";
+                            }else{
+                                throw new BatchException("Unable to update duration");
+                            }
+                            flag = false;
+                            break;
+                    }
+                }
+            }
+        }catch(SQLException e){
+
+        }
+        return message;
+    }
+
+    @Override
     public String addBatch(Batch batch) throws BatchException {
         String message = "Unable added batch details";
 

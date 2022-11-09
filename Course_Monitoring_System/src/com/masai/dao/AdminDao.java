@@ -18,7 +18,7 @@ public interface AdminDao {
     public String addCourse(Course course) throws CourseException;
     public String updateCourse(int cid) throws CourseException;
     public List<Course> viewCourse() throws CourseException;
-
+    public String updateBatch(int batchid)throws BatchException;
 
     //Batch Update , View & Create Section
     public String addBatch(Batch batch) throws BatchException;
