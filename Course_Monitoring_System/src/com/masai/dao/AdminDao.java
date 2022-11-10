@@ -1,13 +1,7 @@
 package com.masai.dao;
 
-import com.masai.exception.AdminException;
-import com.masai.exception.BatchException;
-import com.masai.exception.CourseException;
-import com.masai.exception.FacultyException;
-import com.masai.model.Admin;
-import com.masai.model.Batch;
-import com.masai.model.Course;
-import com.masai.model.Faculty;
+import com.masai.exception.*;
+import com.masai.model.*;
 
 import java.security.PublicKey;
 import java.util.List;
@@ -30,6 +24,8 @@ public interface AdminDao {
     public String updateFaculty(int fid) throws FacultyException;
     public List<Faculty> viewAllFacultyDetails() throws FacultyException;
 
-    //
+    //•	Create, Update, View Course plan.
+    public String createCoursePlan(CoursePlan coursePlan) throws CoursePlanException;
+    public String updateCoursePlan(int planId) throws CoursePlanException;
 }
 

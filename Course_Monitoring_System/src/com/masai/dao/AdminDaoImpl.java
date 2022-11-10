@@ -1,13 +1,7 @@
 package com.masai.dao;
 
-import com.masai.exception.AdminException;
-import com.masai.exception.BatchException;
-import com.masai.exception.CourseException;
-import com.masai.exception.FacultyException;
-import com.masai.model.Admin;
-import com.masai.model.Batch;
-import com.masai.model.Course;
-import com.masai.model.Faculty;
+import com.masai.exception.*;
+import com.masai.model.*;
 import com.masai.utilities.DBUtility;
 
 import java.sql.Connection;
@@ -547,5 +541,128 @@ public class AdminDaoImpl implements AdminDao{
             throw new FacultyException("Faculty data not found");
         }
         return faculties;
+    }
+
+    @Override
+    public String createCoursePlan(CoursePlan coursePlan) throws CoursePlanException {
+        String message = "Unable to Create Course Plan";
+
+        try(Connection conn = DBUtility.provideConnection()){
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO CoursePlan(BatchID,DayNumber,Topic,Status) VALUES (?,?,?,?)");
+            ps.setInt(1,coursePlan.getBatchid());
+            ps.setInt(2,coursePlan.getDaynumber());
+            ps.setString(3,coursePlan.getTopic());
+            ps.setString(4,coursePlan.getStatus());
+
+            int x = ps.executeUpdate();
+            if(x>0){
+                message = x+" Course updated successfully";
+            }else{
+                throw new CoursePlanException("Unable to course plan");
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new CoursePlanException(e.getMessage());
+        }
+        return message;
+    }
+
+    @Override
+    public String updateCoursePlan(int planId) throws CoursePlanException {
+        String message = "Unable to update course plan";
+        Scanner sc = new Scanner(System.in);
+        boolean flag = true;
+        try(Connection conn = DBUtility.provideConnection()){
+            PreparedStatement ps = conn.prepareStatement("SELECT PlanID FROM CoursePlan WHERE PlanID = ?");
+            ps.setInt(1,planId);
+            ResultSet rs = ps.executeQuery();
+            while (flag){
+                System.out.println("+--------------------------------------------------------------------------+");
+                System.out.println("|    Enter your choice :                                                   |");
+                System.out.println("+--------------------------------------------------------------------------+");
+                System.out.println("| 1. Update Course Plan Batch ID.                                          |");
+                System.out.println("| 2. Update Course Plan Day Number.                                        |");
+                System.out.println("| 3. Update Course Plan Topic.                                             |");
+                System.out.println("| 4. Update Course Plan Status.                                            |");
+                System.out.println("+--------------------------------------------------------------------------+");
+
+                int choice = sc.nextInt();
+                if(rs.next()) {
+                    switch (choice) {
+                        case 1:
+                            System.out.println("Enter Course Plan Batch ID For Update : ");
+                            int bid = sc.nextInt();
+                            PreparedStatement ps1 = conn.prepareStatement("UPDATE CoursePlan SET BatchID = ? WHERE PlanID = ?");
+                            ps1.setInt(1, bid);
+                            ps1.setInt(2, planId);
+
+                            int x1 = ps1.executeUpdate();
+                            if (x1 > 0) {
+                                message = "Batch ID updated successfully ..";
+                            } else {
+                                throw new CoursePlanException("Unable to update Batch ID");
+                            }
+                            flag = false;
+                            break;
+                        case 2:
+                            System.out.println("Enter Course Plan Day Number For Update : ");
+                            int day = sc.nextInt();
+                            PreparedStatement ps2 = conn.prepareStatement("UPDATE CoursePlan SET DayNumber = ? WHERE PlanID = ?");
+                            ps2.setInt(1, day);
+                            ps2.setInt(2, planId);
+
+                            int x2 = ps2.executeUpdate();
+                            if (x2 > 0) {
+                                message = "Day Number updated successfully ..";
+                            } else {
+                                throw new CoursePlanException("Unable to update Day Number");
+                            }
+                            flag = false;
+                            break;
+                        case 3:
+                            System.out.println("Enter Course Plan Topic For Update : ");
+                            String topic = sc.next();
+                            PreparedStatement ps3 = conn.prepareStatement("UPDATE CoursePlan SET Topic = ? WHERE PlanID = ?");
+                            ps3.setString(1, topic);
+                            ps3.setInt(2, planId);
+
+                            int x3 = ps3.executeUpdate();
+                            if (x3 > 0) {
+                                message = "Topic updated successfully ..";
+                            } else {
+                                throw new CoursePlanException("Unable to update Topic");
+                            }
+                            flag = false;
+                            break;
+                        case 4:
+                            System.out.println("Enter Course Plan Status For Update : ");
+                            String status = sc.next();
+                            PreparedStatement ps4 = conn.prepareStatement("UPDATE CoursePlan SET Status = ? WHERE PlanID = ?");
+                            ps4.setString(1, status);
+                            ps4.setInt(2, planId);
+
+                            int x4 = ps4.executeUpdate();
+                            if (x4 > 0) {
+                                message = "Status updated successfully ..";
+                            } else {
+                                throw new CoursePlanException("Unable to update Status");
+                            }
+                            flag = false;
+                            break;
+                        default:
+                            System.out.println("Enter valid option for update the course plan");
+                            flag = true;
+                    }
+                }else{
+                    throw new CoursePlanException("Enter valid PlanID for update course plan ");
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new CoursePlanException(e.getMessage());
+        }
+
+        return message;
     }
 }
