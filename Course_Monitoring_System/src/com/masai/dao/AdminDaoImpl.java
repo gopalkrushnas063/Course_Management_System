@@ -665,4 +665,34 @@ public class AdminDaoImpl implements AdminDao{
 
         return message;
     }
+
+    @Override
+    public List<CoursePlan> viewCoursePlanList() throws CourseException {
+        List<CoursePlan> coursePlans = new ArrayList<>();
+
+        try(Connection conn = DBUtility.provideConnection()){
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM CoursePlan");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+
+                int p = rs.getInt("PlanID");
+                int b = rs.getInt("BatchID");
+                int d = rs.getInt("DayNumber");
+                String t = rs.getString("Topic");
+                String s = rs.getString("Status");
+                CoursePlan coursePlan = new CoursePlan(p,b,d,t,s);
+                coursePlans.add(coursePlan);
+
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new CourseException(e.getMessage());
+        }
+
+        if(coursePlans.size()==0){
+            throw new CourseException("No any course plan found");
+        }
+        return coursePlans;
+    }
 }

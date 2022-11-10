@@ -132,6 +132,10 @@ public class UserActivities {
                 UpdateCoursePlanUseCase.updateCoursePlan();
                 BackAndExitOperation.backAndExitOps();
                 break;
+            case 12:
+                ViewCoursePlanDetailsUseCase.viewCourseplan();
+                BackAndExitOperation.backAndExitOps();
+                break;
             case 15:
                 System.out.println("+--------------------------------------------------------------------------+");
                 System.out.println("| Admin Logout Successfully                                                |");

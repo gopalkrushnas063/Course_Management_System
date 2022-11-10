@@ -27,5 +27,6 @@ public interface AdminDao {
     //•	Create, Update, View Course plan.
     public String createCoursePlan(CoursePlan coursePlan) throws CoursePlanException;
     public String updateCoursePlan(int planId) throws CoursePlanException;
+    public List<CoursePlan> viewCoursePlanList() throws CourseException;
 }
 
