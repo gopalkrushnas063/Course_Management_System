@@ -30,6 +30,7 @@ public interface AdminDao {
 
     // View the Day wise update of every batch
     public List<DayWiseBatchDetails> dayWiseDetails(int day) throws DayWiseBatchDetailsException;
+    public List<BatchWiseDetails> batchWiseDetails() throws BatchWiseException;
 
 }
 

@@ -140,6 +140,10 @@ public class UserActivities {
                 ViewDayWiseBatchDetailsUseCase.viewBatchDetailsDayWise();
                 BackAndExitOperation.backAndExitOps();
                 break;
+            case 14:
+                ViewBatchWiseReportUseCase.viewBatchWiseReport();
+                BackAndExitOperation.backAndExitOps();
+                break;
             case 15:
                 System.out.println("+--------------------------------------------------------------------------+");
                 System.out.println("| Admin Logout Successfully                                                |");

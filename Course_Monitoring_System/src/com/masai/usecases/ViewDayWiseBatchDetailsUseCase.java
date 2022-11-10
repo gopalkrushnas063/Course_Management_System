@@ -14,8 +14,8 @@ public class ViewDayWiseBatchDetailsUseCase {
         System.out.println("Enter day number to get batch details : ");
         int day = sc.nextInt();
         System.out.println("+--------------------------------------------------------------------------+\n" +
-                          "|                         View Day-Wise Batch Details                       |\n" +
-                          "+---------------------------------------------------------------------------+");
+                           "|                         View Day-Wise Batch Details                      |\n" +
+                           "+--------------------------------------------------------------------------+");
         AdminDao dao = new AdminDaoImpl();
         try{
             List<DayWiseBatchDetails> batchDetails = dao.dayWiseDetails(day);
@@ -26,7 +26,7 @@ public class ViewDayWiseBatchDetailsUseCase {
                 System.out.println("| Faculty Name       : "+b.getFacultyName());
                 System.out.println("| Number Of Students : "+b.getNumberOfStudents());
                 System.out.println("| Status             : "+b.getStatus());
-                System.out.println("+---------------------------------------------------------------------------+");
+                System.out.println("+--------------------------------------------------------------------------+");
             });
         }catch (DayWiseBatchDetailsException e){
             System.out.println(e.getMessage());

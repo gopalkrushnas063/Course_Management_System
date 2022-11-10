@@ -726,4 +726,38 @@ public class AdminDaoImpl implements AdminDao{
 
         return dayWiseBatchDetails;
     }
+
+    @Override
+    public List<BatchWiseDetails> batchWiseDetails() throws BatchWiseException {
+        List<BatchWiseDetails> batchWiseDetails = new ArrayList<>();
+
+        try(Connection conn = DBUtility.provideConnection()){
+            PreparedStatement ps = conn.prepareStatement("SELECT b.BatchID,f.FacultyID,f.FacultyName,c.CourseID,c.Course_Name,c.Fee,b.NumberOfStudents,b.BatchStartDate,c.Course_Description FROM Batch b INNER JOIN Course c INNER JOIN Faculty f ON b.CourseID = c.CourseID AND b.FacultyID = f.FacultyID GROUP BY BatchID ORDER BY BatchID");
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                int bid = rs.getInt("batchid");
+                int fid = rs.getInt("facultyid");
+                String fn = rs.getString("facultyname");
+                int cid = rs.getInt("courseid");
+                String cn = rs.getString("course_name");
+                int fee = rs.getInt("fee");
+                int nos = rs.getInt("numberofstudents");
+                String bsd = rs.getString("batchstartdate");
+                String cd = rs.getString("course_description");
+                BatchWiseDetails bdw = new BatchWiseDetails(bid,fn,fid,cid,cn,fee,bsd,nos,cd);
+                batchWiseDetails.add(bdw);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new BatchWiseException(e.getMessage());
+        }
+
+        if(batchWiseDetails.size()==0){
+            throw new BatchWiseException("No any record found");
+        }
+
+
+        return batchWiseDetails;
+    }
 }

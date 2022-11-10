@@ -17,13 +17,13 @@ public class ViewFacultyDetailsUseCase {
         try{
             List<Faculty> faculties = dao.viewAllFacultyDetails();
             faculties.forEach(f->{
-                System.out.println("Faculty ID            : "+f.getFacultyID());
-                System.out.println("Faculty Name          : "+f.getFacultyName());
-                System.out.println("Faculty Address       : "+f.getFacultyAddress());
-                System.out.println("Faculty Mobile Number : "+f.getMobile());
-                System.out.println("Faculty Email ID      : "+f.getEmail());
-                System.out.println("Faculty Username      : "+f.getUsername());
-                System.out.println("Faculty password      : "+f.getPassword());
+                System.out.println("| Faculty ID            : "+f.getFacultyID());
+                System.out.println("| Faculty Name          : "+f.getFacultyName());
+                System.out.println("| Faculty Address       : "+f.getFacultyAddress());
+                System.out.println("| Faculty Mobile Number : "+f.getMobile());
+                System.out.println("| Faculty Email ID      : "+f.getEmail());
+                System.out.println("| Faculty Username      : "+f.getUsername());
+                System.out.println("| Faculty password      : "+f.getPassword());
                 System.out.println("+--------------------------------------------------------------------------+");
             });
         }catch (FacultyException e){
