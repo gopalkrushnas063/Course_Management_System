@@ -10,16 +10,20 @@ import java.util.List;
 public class ViewCoursesUseCase {
     public static void viewCourse(){
         AdminDao dao = new AdminDaoImpl();
+        System.out.println("+--------------------------------------------------------------------------+\n" +
+                           "|                       View Registered Course Details                     |\n" +
+                           "+--------------------------------------------------------------------------+");
 
         try{
             List<Course> courses = dao.viewCourse();
-            System.out.println("Details of registered courses are : ");
+            
             courses.forEach(s ->{
-                System.out.println("Course ID : "+s.getCourseID());
-                System.out.println("Course Name : "+s.getCourseName());
-                System.out.println("Course Fee : "+s.getFee());
-                System.out.println("Course Description : "+s.getCourseDescription());
-                System.out.println("----------------------------------------------");
+            	
+                System.out.println("| Course ID          : "+s.getCourseID());
+                System.out.println("| Course Name        : "+s.getCourseName());
+                System.out.println("| Course Fee         : "+s.getFee());
+                System.out.println("| Course Description : "+s.getCourseDescription());
+                System.out.println("+---------------------------------------------------------------------------");
 
             });
         }catch (CourseException e){

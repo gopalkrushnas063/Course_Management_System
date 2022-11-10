@@ -96,10 +96,14 @@ public class AdminDaoImpl implements AdminDao{
             if(rs.next()){
                 boolean check = true;
                 while (check){
-                    System.out.println("Please select your choice to update course details :" +'\n'+
-                            "1. Course Name" +'\n'+
-                            "2. Course Fee" +'\n'+
-                            "3. Course Description");
+                    System.out.println("+--------------------------------------------------------------------------+");
+                    System.out.println("|    Enter your choice :                                                   |");
+                    System.out.println("+--------------------------------------------------------------------------+");
+                    System.out.println("| 1. Course Name.                                                          |");
+                    System.out.println("| 2. Course Fee.                                                           |");
+                    System.out.println("| 3. Course Description.                                                   |");
+                    System.out.println("+--------------------------------------------------------------------------+");
+
                     int c = sc.nextInt();
 
                     switch (c){
@@ -206,12 +210,16 @@ public class AdminDaoImpl implements AdminDao{
 
             if(rs.next()){
                 while (flag){
-                    System.out.println("Please Select As Per Your Requirement : " +"\n"+
-                            "1. Update Course ID" +"\n"+
-                            "2. Update Faculty ID" +"\n"+
-                            "3. Update Number Of Students" +"\n"+
-                            "4. Update Batch Start Date" +"\n"+
-                            "5. Update Duration");
+                    System.out.println("+--------------------------------------------------------------------------+");
+                    System.out.println("|    Enter your choice :                                                   |");
+                    System.out.println("+--------------------------------------------------------------------------+");
+                    System.out.println("| 1. Update Course ID.                                                     |");
+                    System.out.println("| 2. Update Faculty ID.                                                    |");
+                    System.out.println("| 3. Update Number Of Students.                                            |");
+                    System.out.println("| 4. Update Batch Start Date.                                              |");
+                    System.out.println("| 5. Update Duration.                                                      |");
+                    System.out.println("+--------------------------------------------------------------------------+");
+
                     int choice = sc.nextInt();
                     switch (choice){
                         case 1:
@@ -297,6 +305,36 @@ public class AdminDaoImpl implements AdminDao{
     }
 
     @Override
+    public List<Batch> viewBatch() throws BatchException {
+        List<Batch> batches = new ArrayList<>();
+
+        try(Connection conn = DBUtility.provideConnection()){
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM BATCH");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                Batch batch = new Batch();
+                batch.setBatchID(rs.getInt("BatchID"));
+                batch.setCourseID(rs.getInt("CourseID"));
+                batch.setFacultyID(rs.getInt("FacultyID"));
+                batch.setNumberOfStudent(rs.getInt("NumberOfStudents"));
+                batch.setBatchStartDate(rs.getString("BatchStartDate"));
+                batch.setDuration(rs.getString("Duration"));
+
+                batches.add(batch);
+            }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+
+        if(batches.size() == 0){
+            throw new BatchException("No any record found");
+        }
+        return batches;
+
+    }
+
+    @Override
     public String addBatch(Batch batch) throws BatchException {
         String message = "Unable added batch details";
 
@@ -349,5 +387,165 @@ public class AdminDaoImpl implements AdminDao{
             throw new FacultyException(e.getMessage());
         }
         return message;
+    }
+
+    @Override
+    public String updateFaculty(int fid) throws FacultyException {
+        String message = "Something went wrong , unable to update faculty details..";
+        Scanner sc = new Scanner(System.in);
+        boolean flag = true;
+        try(Connection conn = DBUtility.provideConnection()){
+            PreparedStatement ps = conn.prepareStatement("SELECT FacultyID FROM Faculty WHERE FacultyId = ?");
+            ps.setInt(1,fid);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                while (flag){
+                    System.out.println("+--------------------------------------------------------------------------+");
+                    System.out.println("|    Enter your choice :                                                   |");
+                    System.out.println("+--------------------------------------------------------------------------+");
+                    System.out.println("| 1. Update Faculty Name.                                                  |");
+                    System.out.println("| 2. Update Faculty Address.                                               |");
+                    System.out.println("| 3. Update Mobile Number.                                                 |");
+                    System.out.println("| 4. Update Email ID.                                                      |");
+                    System.out.println("| 5. Update Username.                                                      |");
+                    System.out.println("| 6. Update Password.                                                      |");
+                    System.out.println("+--------------------------------------------------------------------------+");
+                    int choice = sc.nextInt();
+                    switch (choice){
+                        case 1:
+                            System.out.println("Enter Faculty Name For Update: ");
+                            String fname = sc.next();
+                            PreparedStatement ps1 = conn.prepareStatement("UPDATE FACULTY SET FacultyName = ? WHERE FacultyID = ?");
+                            ps1.setString(1,fname);
+                            ps1.setInt(2,fid);
+
+                            int x = ps1.executeUpdate();
+
+                            if(x>0){
+                                message = "Faculty name updated successfully .";
+                            }else{
+                                throw new FacultyException("Something went wrong to update faculty name. Please try again");
+                            }
+                            flag = false;
+                            break;
+                        case 2:
+                            System.out.println("Enter faculty address for update: ");
+                            String fadd = sc.next();
+
+                            PreparedStatement ps2 = conn.prepareStatement("UPDATE FACULTY SET FacultyAddress = ? WHERE FacultyID = ?");
+                            ps2.setString(1,fadd);
+                            ps2.setInt(2,fid);
+
+                            int x1 = ps2.executeUpdate();
+                            if(x1>0){
+                                message = "Faculty address updated successfully";
+                            }else{
+                                throw new FacultyException("Something went wrong to update faculty address");
+                            }
+                            flag = false;
+                            break;
+                        case 3:
+                            System.out.println("Enter faculty mobile number for update :");
+                            String mob = sc.next();
+                            PreparedStatement ps3 = conn.prepareStatement("UPDATE FACULTY SET Mobile = ? WHERE FacultyID = ?");
+                            ps3.setString(1,mob);
+                            ps3.setInt(2,fid);
+
+                            int x2 = ps3.executeUpdate();
+                            if(x2>0){
+                                message = "Faculty mobile number updated successfully";
+                            }else{
+                                throw new FacultyException("Something went wrong ,please try again");
+                            }
+                            flag = false;
+                            break;
+                        case 4:
+                            System.out.println("Enter faculty Email ID for update");
+                            String email= sc.next();
+                            PreparedStatement ps4 = conn.prepareStatement("UPDATE FACULTY SET Email = ? WHERE FacultyID = ?");
+                            ps4.setString(1,email);
+                            ps4.setInt(2,fid);
+                            int x3 = ps4.executeUpdate();
+                            if(x3>0){
+                                message = "Email ID updated successfully";
+                            }else{
+                                throw new FacultyException("Unable to update faculty Email ID.");
+                            }
+                            flag = false;
+                            break;
+                        case 5:
+                            System.out.println("Enter username of faculty for update :");
+                            String uname = sc.next();
+                            PreparedStatement ps5 = conn.prepareStatement("UPDATE FACULTY SET Username = ? WHERE FacultyId = ?");
+                            ps5.setString(1,uname);
+                            ps5.setInt(2,fid);
+
+                            int x4 = ps5.executeUpdate();
+                            if(x4 > 0){
+                                message = "Username updated successfully";
+                            }else {
+                                throw new FacultyException("Unable to update the faculty username");
+                            }
+                            flag = false;
+                            break;
+                        case 6:
+                            System.out.println("Enter faculty password for update :");
+                            String pwd = sc.next();
+                            PreparedStatement ps6 = conn.prepareStatement("UPDATE FACULTY SET Password = ? WHERE FacultyId = ?");
+                            ps6.setString(1,pwd);
+                            ps6.setInt(2,fid);
+                            int x5 = ps6.executeUpdate();
+
+                            if(x5>0){
+                                message = "Password updated successfully";
+                            }else{
+                                throw new FacultyException("Unable to update password");
+                            }
+                            flag = false;
+                            break;
+                        default:
+                            System.out.println("Kindly choose the valid option for update the faculty details");
+                            flag = true;
+                    }
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new FacultyException(e.getMessage());
+        }
+
+        return message;
+    }
+
+    @Override
+    public List<Faculty> viewAllFacultyDetails() throws FacultyException {
+        List<Faculty> faculties = new ArrayList<>();
+
+        try (Connection conn = DBUtility.provideConnection()){
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM FACULTY");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                Faculty faculty = new Faculty();
+                faculty.setFacultyID(rs.getInt("FacultyID"));
+                faculty.setFacultyName(rs.getString("FacultyName"));
+                faculty.setFacultyAddress(rs.getString("FacultyAddress"));
+                faculty.setMobile(rs.getString("Mobile"));
+                faculty.setEmail(rs.getString("Email"));
+                faculty.setUsername(rs.getString("Username"));
+                faculty.setPassword(rs.getString("Password"));
+
+                faculties.add(faculty);
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new FacultyException(e.getMessage());
+        }
+
+        if(faculties.size() == 0){
+            throw new FacultyException("Faculty data not found");
+        }
+        return faculties;
     }
 }

@@ -90,21 +90,39 @@ public class UserActivities {
         switch (choice){
             case 1:
                 AddCourseDetailsUseCase.addCourse();
+                BackAndExitOperation.backAndExitOps();
                 break;
             case 2:
                 UpdateCourseDetailsUseCase.updateCourse();
+                BackAndExitOperation.backAndExitOps();
                 break;
             case 3:
                 ViewCoursesUseCase.viewCourse();
+                BackAndExitOperation.backAndExitOps();
                 break;
             case 4:
                 AddBatchDetailsUseCase.addBatch();
+                BackAndExitOperation.backAndExitOps();
                 break;
             case 5:
                 UpdateBatchDetailsUseCase.updateBatch();
+                BackAndExitOperation.backAndExitOps();
+                break;
+            case 6:
+                ViewBatchDetailsUseCase.viewBatch();
+                BackAndExitOperation.backAndExitOps();
                 break;
             case 7:
                 RegisterFacultyUseCase.registerFaculty();
+                BackAndExitOperation.backAndExitOps();
+                break;
+            case 8:
+                UpdateFacultyDetailsUseCase.updateFaculty();
+                BackAndExitOperation.backAndExitOps();
+                break;
+            case 9:
+                ViewFacultyDetailsUseCase.viewFacultyDetails();
+                BackAndExitOperation.backAndExitOps();
                 break;
             case 15:
                 System.out.println("+--------------------------------------------------------------------------+");
