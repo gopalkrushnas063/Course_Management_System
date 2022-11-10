@@ -136,6 +136,10 @@ public class UserActivities {
                 ViewCoursePlanDetailsUseCase.viewCourseplan();
                 BackAndExitOperation.backAndExitOps();
                 break;
+            case 13:
+                ViewDayWiseBatchDetailsUseCase.viewBatchDetailsDayWise();
+                BackAndExitOperation.backAndExitOps();
+                break;
             case 15:
                 System.out.println("+--------------------------------------------------------------------------+");
                 System.out.println("| Admin Logout Successfully                                                |");

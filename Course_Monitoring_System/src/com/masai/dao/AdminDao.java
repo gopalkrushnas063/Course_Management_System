@@ -3,7 +3,6 @@ package com.masai.dao;
 import com.masai.exception.*;
 import com.masai.model.*;
 
-import java.security.PublicKey;
 import java.util.List;
 
 public interface AdminDao {
@@ -28,5 +27,9 @@ public interface AdminDao {
     public String createCoursePlan(CoursePlan coursePlan) throws CoursePlanException;
     public String updateCoursePlan(int planId) throws CoursePlanException;
     public List<CoursePlan> viewCoursePlanList() throws CourseException;
+
+    // View the Day wise update of every batch
+    public List<DayWiseBatchDetails> dayWiseDetails(int day) throws DayWiseBatchDetailsException;
+
 }
 

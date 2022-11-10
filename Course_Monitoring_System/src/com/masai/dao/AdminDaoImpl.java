@@ -695,4 +695,35 @@ public class AdminDaoImpl implements AdminDao{
         }
         return coursePlans;
     }
+
+    @Override
+    public List<DayWiseBatchDetails> dayWiseDetails(int day) throws DayWiseBatchDetailsException {
+        List<DayWiseBatchDetails> dayWiseBatchDetails = new ArrayList<>();
+
+        try (Connection conn = DBUtility.provideConnection()){
+            PreparedStatement ps = conn.prepareStatement("SELECT cp.BatchID,cp.DayNumber,c.Course_Name,f.FacultyName,b.NumberOfStudents,cp.Status FROM CoursePlan cp INNER JOIN Batch b INNER JOIN Course c INNER JOIN Faculty f ON f.FacultyID = b.FacultyID AND b.BatchID = cp.BatchID AND b.CourseID = c.CourseID WHERE cp.DayNumber = ?");
+            ps.setInt(1,day);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                int b = rs.getInt("BatchID");
+                int d = rs.getInt("DayNumber");
+                String c = rs.getString("Course_Name");
+                String f = rs.getString("FacultyName");
+                int n = rs.getInt("NumberOfStudents");
+                String s = rs.getString("Status");
+                DayWiseBatchDetails dayWiseBatchDetails1 = new DayWiseBatchDetails(b,d,c,f,n,s);
+                dayWiseBatchDetails.add(dayWiseBatchDetails1);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new DayWiseBatchDetailsException(e.getMessage());
+        }
+
+        if(dayWiseBatchDetails.size() == 0){
+            throw new DayWiseBatchDetailsException("No any record found");
+        }
+
+        return dayWiseBatchDetails;
+    }
 }
