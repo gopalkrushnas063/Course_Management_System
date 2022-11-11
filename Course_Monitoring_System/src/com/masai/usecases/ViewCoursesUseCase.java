@@ -11,7 +11,7 @@ public class ViewCoursesUseCase {
     public static void viewCourse(){
         AdminDao dao = new AdminDaoImpl();
         System.out.println("+--------------------------------------------------------------------------+\n" +
-                           "|                       View Registered Course Details                     |\n" +
+                           "|                            View Course Details                           |\n" +
                            "+--------------------------------------------------------------------------+");
 
         try{

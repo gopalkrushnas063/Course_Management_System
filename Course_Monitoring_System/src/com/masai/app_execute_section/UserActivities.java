@@ -6,7 +6,6 @@ import com.masai.dao.FacultyDao;
 import com.masai.dao.FacultyDaoImpl;
 import com.masai.exception.AdminException;
 import com.masai.exception.FacultyException;
-import com.masai.model.CoursePlan;
 import com.masai.usecases.*;
 import com.masai.usecases.batch.BatchUseCase;
 import com.masai.usecases.course.CourseUseCase;
@@ -87,6 +86,8 @@ public class UserActivities {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("+-========================================================================-+");
+        System.out.println("|                                 MAIN MENU                                |");
+        System.out.println("|--------------------------------------------------------------------------|");
         System.out.println("| 1.  Courses                                                              |");
         System.out.println("| 2.  Batch                                                                |");
         System.out.println("| 3.  Faculty                                                              |");
@@ -94,7 +95,6 @@ public class UserActivities {
         System.out.println("| 5.  View Day wise Planner                                                |");
         System.out.println("| 6.  Generate report for every batch                                      |");
         System.out.println("| 7.  Logout                                                               |");
-        System.out.println("| 8.  Exit From The App                                                    |");
         System.out.println("+-========================================================================-+");
 
         int choice = 0;
@@ -135,13 +135,12 @@ public class UserActivities {
                 System.out.println("| Admin Logout Successfully                                                |");
                 System.out.println("+--------------------------------------------------------------------------+");
                 UserActivities.selectUser();
-            case 8:
-                ThankYou.thanks();
-                UserActivities.selectUser();
                 break;
         }
         UserActivities.admin();
     }
+
+
 
     public static void faculty(){
         Scanner sc = new Scanner(System.in);
@@ -158,11 +157,15 @@ public class UserActivities {
         }catch (InputMismatchException e){
             System.out.println("Invalid input..!");
             System.out.println("Try Again...");
-            UserActivities.admin();
+            UserActivities.faculty();
         }
         switch (choice){
             case 1:
                 FacultyCoursePlanViewUseCase.facultyCoursePlanView();
+                BackAndExitOperationFaculty.backAndExitFaculty();
+                break;
+            case 2:
+                FacultyDayWisePlannerUseCase.facultyDayWisePlan();
                 BackAndExitOperationFaculty.backAndExitFaculty();
                 break;
             case 4:
@@ -170,6 +173,7 @@ public class UserActivities {
                 System.out.println("| Faculty Logout Successfully                                              |");
                 System.out.println("+--------------------------------------------------------------------------+");
                 UserActivities.selectUser();
+                break;
         }
         UserActivities.faculty();
     }

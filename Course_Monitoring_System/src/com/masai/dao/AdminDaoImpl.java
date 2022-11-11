@@ -33,9 +33,9 @@ public class AdminDaoImpl implements AdminDao{
                 if(flag) break;
             }
             if(flag) {
-                System.out.println("+--------------------------------------------------------------------------+");
-                System.out.println("| Admin Login Successfully                                                 |");
-                System.out.println("+--------------------------------------------------------------------------+");
+
+                System.out.println("Admin Login Successfully");
+
                 System.out.println("+-========================================================================-+");
                 System.out.println("|                  WELCOME TO THE COURSE MONITORING SYSTEM                 |");
                 result = true;
