@@ -32,7 +32,7 @@ public class FacultyDayWisePlannerUseCase {
             String result = dao.dayWisePlan(coursePlan);
             System.out.println(result);
         }catch (FacultyException e){
-            System.out.println("Something went wrong...");
+            System.out.println("Something went wrong...!!");
         }
     }
 }
