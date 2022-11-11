@@ -6,7 +6,13 @@ import com.masai.dao.FacultyDao;
 import com.masai.dao.FacultyDaoImpl;
 import com.masai.exception.AdminException;
 import com.masai.exception.FacultyException;
+import com.masai.model.CoursePlan;
 import com.masai.usecases.*;
+import com.masai.usecases.batch.BatchUseCase;
+import com.masai.usecases.course.CourseUseCase;
+import com.masai.usecases.course_plan.CoursePlanUseCase;
+import com.masai.usecases.faculty.FacultyUseCase;
+import com.masai.utilities.ThankYou;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -81,21 +87,14 @@ public class UserActivities {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("+-========================================================================-+");
-        System.out.println("| 1.  Create Course                                                        |");
-        System.out.println("| 2.  Update Course                                                        |");
-        System.out.println("| 3.  View Course                                                          |");
-        System.out.println("| 4.  Create Batch                                                         |");
-        System.out.println("| 5.  Update Batch Details                                                 |");
-        System.out.println("| 6.  View Batch Details By Course Name                                    |");
-        System.out.println("| 7.  Register Faculty                                                     |");
-        System.out.println("| 8.  Update Faculty                                                       |");
-        System.out.println("| 9.  View Faculty Details                                                 |");
-        System.out.println("| 10. Create Course Plan                                                   |");
-        System.out.println("| 11. Update Course Plan                                                   |");
-        System.out.println("| 12. View Course Plan                                                     |");
-        System.out.println("| 13. View the Day wise update of every batch                              |");
-        System.out.println("| 14. Generate report for every batch                                      |");
-        System.out.println("| 15. Logout                                                               |");
+        System.out.println("| 1.  Courses                                                              |");
+        System.out.println("| 2.  Batch                                                                |");
+        System.out.println("| 3.  Faculty                                                              |");
+        System.out.println("| 4.  Course Plan                                                          |");
+        System.out.println("| 5.  View Day wise Planner                                                |");
+        System.out.println("| 6.  Generate report for every batch                                      |");
+        System.out.println("| 7.  Logout                                                               |");
+        System.out.println("| 8.  Exit From The App                                                    |");
         System.out.println("+-========================================================================-+");
 
         int choice = 0;
@@ -108,66 +107,38 @@ public class UserActivities {
         }
         switch (choice){
             case 1:
-                AddCourseDetailsUseCase.addCourse();
+                CourseUseCase.courseOps();
                 BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 2:
-                UpdateCourseDetailsUseCase.updateCourse();
+                BatchUseCase.batchUseCase();
                 BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 3:
-                ViewCoursesUseCase.viewCourse();
+                FacultyUseCase.facultyUseCase();
                 BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 4:
-                AddBatchDetailsUseCase.addBatch();
+                CoursePlanUseCase.coursePlan();
                 BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 5:
-                UpdateBatchDetailsUseCase.updateBatch();
-                BackAndExitOperationAdmin.backAndExitOps();
-                break;
-            case 6:
-                ViewBatchDetailsUseCase.viewBatch();
-                BackAndExitOperationAdmin.backAndExitOps();
-                break;
-            case 7:
-                RegisterFacultyUseCase.registerFaculty();
-                BackAndExitOperationAdmin.backAndExitOps();
-                break;
-            case 8:
-                UpdateFacultyDetailsUseCase.updateFaculty();
-                BackAndExitOperationAdmin.backAndExitOps();
-                break;
-            case 9:
-                ViewFacultyDetailsUseCase.viewFacultyDetails();
-                BackAndExitOperationAdmin.backAndExitOps();
-                break;
-            case 10:
-                CoursePlanCreationUseCase.coursePlanCreation();
-                BackAndExitOperationAdmin.backAndExitOps();
-                break;
-            case 11:
-                UpdateCoursePlanUseCase.updateCoursePlan();
-                BackAndExitOperationAdmin.backAndExitOps();
-                break;
-            case 12:
-                ViewCoursePlanDetailsUseCase.viewCourseplan();
-                BackAndExitOperationAdmin.backAndExitOps();
-                break;
-            case 13:
                 ViewDayWiseBatchDetailsUseCase.viewBatchDetailsDayWise();
                 BackAndExitOperationAdmin.backAndExitOps();
                 break;
-            case 14:
+            case 6:
                 ViewBatchWiseReportUseCase.viewBatchWiseReport();
                 BackAndExitOperationAdmin.backAndExitOps();
                 break;
-            case 15:
+            case 7:
                 System.out.println("+--------------------------------------------------------------------------+");
                 System.out.println("| Admin Logout Successfully                                                |");
                 System.out.println("+--------------------------------------------------------------------------+");
                 UserActivities.selectUser();
+            case 8:
+                ThankYou.thanks();
+                UserActivities.selectUser();
+                break;
         }
         UserActivities.admin();
     }

@@ -16,9 +16,9 @@ public class CoursePlanCreationUseCase {
         System.out.println("Enter Day Number :");
         int day = sc.nextInt();
         System.out.println("Enter Course Topic :");
-        String topic = sc.next();
-        System.out.println("Enter Course Status : ");
         sc.nextLine();
+        String topic = sc.nextLine();
+        System.out.println("Enter Course Status : ");
         String status = sc.nextLine();
 
         AdminDao dao = new AdminDaoImpl();

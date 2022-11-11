@@ -543,6 +543,8 @@ public class AdminDaoImpl implements AdminDao{
         return faculties;
     }
 
+
+
     @Override
     public String createCoursePlan(CoursePlan coursePlan) throws CoursePlanException {
         String message = "Unable to Create Course Plan";
@@ -701,7 +703,7 @@ public class AdminDaoImpl implements AdminDao{
         List<DayWiseBatchDetails> dayWiseBatchDetails = new ArrayList<>();
 
         try (Connection conn = DBUtility.provideConnection()){
-            PreparedStatement ps = conn.prepareStatement("SELECT cp.BatchID,cp.DayNumber,c.Course_Name,f.FacultyName,b.NumberOfStudents,cp.Status FROM CoursePlan cp INNER JOIN Batch b INNER JOIN Course c INNER JOIN Faculty f ON f.FacultyID = b.FacultyID AND b.BatchID = cp.BatchID AND b.CourseID = c.CourseID WHERE cp.DayNumber = ?");
+            PreparedStatement ps = conn.prepareStatement("SELECT b.BatchID,cp.DayNumber,c.Course_Name,f.FacultyName,b.NumberOfStudents,cp.Status FROM Faculty f INNER JOIN Batch b ON f.FacultyID = b.FacultyID INNER JOIN Course c ON c.CourseID = b.CourseID INNER JOIN CoursePlan cp ON b.BatchID = cp.BatchID WHERE cp.DayNumber = ?");
             ps.setInt(1,day);
             ResultSet rs = ps.executeQuery();
 
