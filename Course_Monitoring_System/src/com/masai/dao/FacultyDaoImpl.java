@@ -1,12 +1,16 @@
 package com.masai.dao;
 
+import com.masai.exception.CoursePlanException;
 import com.masai.exception.FacultyException;
+import com.masai.model.CoursePlan;
 import com.masai.utilities.DBUtility;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class FacultyDaoImpl implements FacultyDao{
@@ -49,5 +53,32 @@ public class FacultyDaoImpl implements FacultyDao{
 
 
         return result;
+    }
+
+    @Override
+    public List<CoursePlan> viewCoursePlan() throws CoursePlanException {
+        List<CoursePlan> coursePlans = new ArrayList<>();
+        try(Connection conn = DBUtility.provideConnection()){
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM CoursePlan");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                int p = rs.getInt("PlanID");
+                int b = rs.getInt("BatchID");
+                int d = rs.getInt("DayNumber");
+                String t = rs.getString("Topic");
+                String s = rs.getString("Status");
+                CoursePlan cp = new CoursePlan(p,b,d,t,s);
+                coursePlans.add(cp);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new CoursePlanException(e.getMessage());
+        }
+
+        if(coursePlans.size() == 0){
+            throw new CoursePlanException("No any record found");
+        }
+        return coursePlans;
     }
 }

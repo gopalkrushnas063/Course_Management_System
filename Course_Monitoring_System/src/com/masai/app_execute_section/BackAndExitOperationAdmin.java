@@ -2,7 +2,7 @@ package com.masai.app_execute_section;
 
 import java.util.Scanner;
 
-public class BackAndExitOperation {
+public class BackAndExitOperationAdmin {
     public static void backAndExitOps(){
         Scanner sc = new Scanner(System.in);
         System.out.println("+--------------------------------------------------------------------------+");

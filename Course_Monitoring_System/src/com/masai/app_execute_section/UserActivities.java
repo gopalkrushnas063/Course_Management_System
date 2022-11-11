@@ -109,59 +109,59 @@ public class UserActivities {
         switch (choice){
             case 1:
                 AddCourseDetailsUseCase.addCourse();
-                BackAndExitOperation.backAndExitOps();
+                BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 2:
                 UpdateCourseDetailsUseCase.updateCourse();
-                BackAndExitOperation.backAndExitOps();
+                BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 3:
                 ViewCoursesUseCase.viewCourse();
-                BackAndExitOperation.backAndExitOps();
+                BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 4:
                 AddBatchDetailsUseCase.addBatch();
-                BackAndExitOperation.backAndExitOps();
+                BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 5:
                 UpdateBatchDetailsUseCase.updateBatch();
-                BackAndExitOperation.backAndExitOps();
+                BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 6:
                 ViewBatchDetailsUseCase.viewBatch();
-                BackAndExitOperation.backAndExitOps();
+                BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 7:
                 RegisterFacultyUseCase.registerFaculty();
-                BackAndExitOperation.backAndExitOps();
+                BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 8:
                 UpdateFacultyDetailsUseCase.updateFaculty();
-                BackAndExitOperation.backAndExitOps();
+                BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 9:
                 ViewFacultyDetailsUseCase.viewFacultyDetails();
-                BackAndExitOperation.backAndExitOps();
+                BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 10:
                 CoursePlanCreationUseCase.coursePlanCreation();
-                BackAndExitOperation.backAndExitOps();
+                BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 11:
                 UpdateCoursePlanUseCase.updateCoursePlan();
-                BackAndExitOperation.backAndExitOps();
+                BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 12:
                 ViewCoursePlanDetailsUseCase.viewCourseplan();
-                BackAndExitOperation.backAndExitOps();
+                BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 13:
                 ViewDayWiseBatchDetailsUseCase.viewBatchDetailsDayWise();
-                BackAndExitOperation.backAndExitOps();
+                BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 14:
                 ViewBatchWiseReportUseCase.viewBatchWiseReport();
-                BackAndExitOperation.backAndExitOps();
+                BackAndExitOperationAdmin.backAndExitOps();
                 break;
             case 15:
                 System.out.println("+--------------------------------------------------------------------------+");
@@ -179,8 +179,27 @@ public class UserActivities {
         System.out.println("| 1.  View The Course Plan                                                 |");
         System.out.println("| 2.  Fill-up The Day wise Plan                                            |");
         System.out.println("| 3.  Update your password                                                 |");
-        System.out.println("| 15. Logout                                                               |");
+        System.out.println("| 4.  Logout                                                               |");
         System.out.println("+-========================================================================-+");
-
+        int choice = 0;
+        try{
+            choice = sc.nextInt();
+        }catch (InputMismatchException e){
+            System.out.println("Invalid input..!");
+            System.out.println("Try Again...");
+            UserActivities.admin();
+        }
+        switch (choice){
+            case 1:
+                FacultyCoursePlanViewUseCase.facultyCoursePlanView();
+                BackAndExitOperationFaculty.backAndExitFaculty();
+                break;
+            case 4:
+                System.out.println("+--------------------------------------------------------------------------+");
+                System.out.println("| Faculty Logout Successfully                                              |");
+                System.out.println("+--------------------------------------------------------------------------+");
+                UserActivities.selectUser();
+        }
+        UserActivities.faculty();
     }
 }
