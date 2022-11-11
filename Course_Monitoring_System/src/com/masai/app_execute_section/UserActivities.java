@@ -2,7 +2,10 @@ package com.masai.app_execute_section;
 
 import com.masai.dao.AdminDao;
 import com.masai.dao.AdminDaoImpl;
+import com.masai.dao.FacultyDao;
+import com.masai.dao.FacultyDaoImpl;
 import com.masai.exception.AdminException;
+import com.masai.exception.FacultyException;
 import com.masai.usecases.*;
 
 import java.util.InputMismatchException;
@@ -47,7 +50,23 @@ public class UserActivities {
                 }
                 break;
             case 2:
-                UserActivities.faculty();
+                System.out.println("+--------------------------------------------------------------------------+");
+                System.out.println("Enter faculty username : ");
+                String uname=sc.next();
+                System.out.println("Enter faculty password : ");
+                String pwd=sc.next();
+                System.out.println("+--------------------------------------------------------------------------+");
+                FacultyDao fdao = new FacultyDaoImpl();
+                try {
+                    boolean facultyAuth = fdao.facultyLogin(uname,pwd);
+                    if(facultyAuth) {
+                        UserActivities.faculty();
+                    }else {
+                        UserActivities.selectUser();
+                    }
+                } catch (FacultyException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             default:
                 System.out.println("Invalid Choice...!" +'\n'+
@@ -154,6 +173,14 @@ public class UserActivities {
     }
 
     public static void faculty(){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("+-========================================================================-+");
+        System.out.println("| 1.  View The Course Plan                                                 |");
+        System.out.println("| 2.  Fill-up The Day wise Plan                                            |");
+        System.out.println("| 3.  Update your password                                                 |");
+        System.out.println("| 15. Logout                                                               |");
+        System.out.println("+-========================================================================-+");
 
     }
 }
