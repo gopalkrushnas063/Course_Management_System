@@ -2,6 +2,7 @@ package com.masai.usecases.course;
 
 import com.masai.app_execute_section.BackAndExitOperationAdmin;
 import com.masai.app_execute_section.BackAndExitOperationFaculty;
+import com.masai.app_execute_section.BackCourseSection;
 import com.masai.app_execute_section.UserActivities;
 import com.masai.usecases.AddCourseDetailsUseCase;
 import com.masai.usecases.UpdateCourseDetailsUseCase;
@@ -16,6 +17,8 @@ public class CourseUseCase {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("+-========================================================================-+");
+        System.out.println("|                               COURSE SECTION                             |");
+        System.out.println("|--------------------------------------------------------------------------|");
         System.out.println("| 1.  Create Course                                                        |");
         System.out.println("| 2.  Update Course                                                        |");
         System.out.println("| 3.  View Course                                                          |");
@@ -33,19 +36,19 @@ public class CourseUseCase {
         switch (choice){
             case 1:
                 AddCourseDetailsUseCase.addCourse();
-                BackAndExitOperationAdmin.backAndExitOps();
+                BackCourseSection.backCourseSection();
                 break;
             case 2:
                 UpdateCourseDetailsUseCase.updateCourse();
-                BackAndExitOperationAdmin.backAndExitOps();
+                BackCourseSection.backCourseSection();
                 break;
             case 3:
                 ViewCoursesUseCase.viewCourse();
-                BackAndExitOperationAdmin.backAndExitOps();
+                BackCourseSection.backCourseSection();
                 break;
             case 4:
                 CoursePlanUseCase.coursePlan();
-                BackAndExitOperationAdmin.backAndExitOps();
+                BackCourseSection.backCourseSection();
                 break;
         }
         UserActivities.admin();

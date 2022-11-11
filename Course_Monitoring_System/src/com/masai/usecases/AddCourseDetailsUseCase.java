@@ -5,6 +5,7 @@ import com.masai.dao.AdminDaoImpl;
 import com.masai.exception.CourseException;
 import com.masai.model.Course;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AddCourseDetailsUseCase {
@@ -29,7 +30,11 @@ public class AddCourseDetailsUseCase {
         try{
             String result = dao.addCourse(course);
             System.out.println(result);
-        }catch (CourseException e){
+        }catch (InputMismatchException e){
+            System.out.println("Invalid input! Try Again.......!");
+            System.out.println();
+        }
+        catch (CourseException e){
             e.printStackTrace();
         }
 

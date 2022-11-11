@@ -82,26 +82,17 @@ public class FacultyDaoImpl implements FacultyDao{
     }
 
     @Override
-    public String dayWisePlan() throws FacultyException {
+    public String dayWisePlan(CoursePlan coursePlan) throws FacultyException {
         String message = "Unable to add ";
 
-        Scanner sc = new Scanner(System.in);
+
         try(Connection conn = DBUtility.provideConnection()){
-            System.out.println(" Fill up the day wise planner form : ");
-            System.out.println("Enter Batch ID : ");
-            int bid = sc.nextInt();
-            System.out.println("Enter Day Number : ");
-            int day = sc.nextInt();
-            System.out.println("Enter Topic : ");
-            sc.nextLine();
-            String topic = sc.nextLine();
-            System.out.println("Enter Current Status :");
-            String status = sc.nextLine();
+
             PreparedStatement ps = conn.prepareStatement("INSERT INTO CoursePlan(BatchID , DayNumber , Topic , Status) VALUES (?,?,?,?)");
-            ps.setInt(1,bid);
-            ps.setInt(2,day);
-            ps.setString(3,topic);
-            ps.setString(4,status);
+            ps.setInt(1,coursePlan.getBatchid());
+            ps.setInt(2,coursePlan.getDaynumber());
+            ps.setString(3,coursePlan.getTopic());
+            ps.setString(4,coursePlan.getStatus());
 
             int x = ps.executeUpdate();
             if(x>0){
@@ -110,8 +101,8 @@ public class FacultyDaoImpl implements FacultyDao{
                 throw new FacultyException("Something went wrong");
             }
         }catch (SQLException e){
-            e.printStackTrace();
-            throw new FacultyException(e.getMessage());
+
+            throw new FacultyException("Needs to be fill every input field");
         }
         return message;
     }

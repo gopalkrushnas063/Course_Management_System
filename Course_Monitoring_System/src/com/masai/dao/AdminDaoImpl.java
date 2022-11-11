@@ -1,5 +1,6 @@
 package com.masai.dao;
 
+import com.masai.app_execute_section.UserActivities;
 import com.masai.exception.*;
 import com.masai.model.*;
 import com.masai.utilities.DBUtility;
@@ -9,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,9 +35,9 @@ public class AdminDaoImpl implements AdminDao{
                 if(flag) break;
             }
             if(flag) {
-                System.out.println("+--------------------------------------------------------------------------+");
-                System.out.println("| Admin Login Successfully                                                 |");
-                System.out.println("+--------------------------------------------------------------------------+");
+
+                System.out.println("Admin Login Successfully");
+
                 System.out.println("+-========================================================================-+");
                 System.out.println("|                  WELCOME TO THE COURSE MONITORING SYSTEM                 |");
                 result = true;
@@ -58,7 +60,7 @@ public class AdminDaoImpl implements AdminDao{
         String message = "Not added...";
 
         try(Connection conn = DBUtility.provideConnection()){
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO COURSE(Course_Name,Fee,Course_Description) VALUES(?,?,?)");
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO COURSE(CourseName,Fee,CourseDescription) VALUES(?,?,?)");
 
             ps.setString(1,course.getCourseName());
             ps.setInt(2,course.getFee());
@@ -67,13 +69,16 @@ public class AdminDaoImpl implements AdminDao{
             int x = ps.executeUpdate();
 
             if(x>0){
-                message = x + "Course details added successfully";
+                message = x + " Course details added successfully";
             }else {
                 throw new CourseException("Something went wrong , so unable to add course details . Kindly try again....");
             }
+        }catch (InputMismatchException e){
+            System.out.println("Invalid input! Try Again.......!");
+            System.out.println();
         }catch (SQLException e){
             e.printStackTrace();
-
+            throw new CourseException("Please enter valid input");
         }
 
         return message;
@@ -105,7 +110,7 @@ public class AdminDaoImpl implements AdminDao{
                             System.out.println("Enter updated course name : ");
                             String cname = sc.next();
 
-                            PreparedStatement ps1 = conn.prepareStatement("UPDATE COURSE SET Course_Name = ? WHERE CourseId = ?");
+                            PreparedStatement ps1 = conn.prepareStatement("UPDATE COURSE SET CourseName = ? WHERE CourseId = ?");
                             ps1.setString(1, cname);
                             ps1.setInt(2, cid);
 
@@ -140,7 +145,7 @@ public class AdminDaoImpl implements AdminDao{
                             System.out.println("Enter updated course description : ");
                             String  desc = sc.next();
 
-                            PreparedStatement ps3 = conn.prepareStatement("UPDATE Course SET Course_Desctiption = ? WHERE CourseID = ?");
+                            PreparedStatement ps3 = conn.prepareStatement("UPDATE Course SET CourseDesctiption = ? WHERE CourseID = ?");
                             ps3.setString(1,desc);
                             ps3.setInt(2,cid);
 
@@ -162,6 +167,9 @@ public class AdminDaoImpl implements AdminDao{
             }
         }catch (SQLException e){
             e.printStackTrace();
+        }catch (InputMismatchException e){
+            System.out.println("Invalid input! Try Again.......!");
+            System.out.println();
         }
         return message;
     }
@@ -176,9 +184,9 @@ public class AdminDaoImpl implements AdminDao{
             while(rs.next()){
                 Course course = new Course();
                 course.setCourseID(rs.getInt("CourseID"));
-                course.setCourseName(rs.getString("Course_Name"));
+                course.setCourseName(rs.getString("CourseName"));
                 course.setFee(rs.getInt("fee"));
-                course.setCourseDescription(rs.getString("Course_Description"));
+                course.setCourseDescription(rs.getString("CourseDescription"));
 
                 courses.add(course);
             }
@@ -564,8 +572,8 @@ public class AdminDaoImpl implements AdminDao{
             }
 
         }catch (SQLException e){
-            e.printStackTrace();
-            throw new CoursePlanException(e.getMessage());
+                       System.out.println("+--------------------------------------------------------------------------+");
+            throw new CoursePlanException("| Cannot add or update because Batch does not exist                         |");
         }
         return message;
     }
@@ -703,14 +711,14 @@ public class AdminDaoImpl implements AdminDao{
         List<DayWiseBatchDetails> dayWiseBatchDetails = new ArrayList<>();
 
         try (Connection conn = DBUtility.provideConnection()){
-            PreparedStatement ps = conn.prepareStatement("SELECT b.BatchID,cp.DayNumber,c.Course_Name,f.FacultyName,b.NumberOfStudents,cp.Status FROM Faculty f INNER JOIN Batch b ON f.FacultyID = b.FacultyID INNER JOIN Course c ON c.CourseID = b.CourseID INNER JOIN CoursePlan cp ON b.BatchID = cp.BatchID WHERE cp.DayNumber = ?");
+            PreparedStatement ps = conn.prepareStatement("SELECT b.BatchID,cp.DayNumber,c.CourseName,f.FacultyName,b.NumberOfStudents,cp.Status FROM Faculty f INNER JOIN Batch b ON f.FacultyID = b.FacultyID INNER JOIN Course c ON c.CourseID = b.CourseID INNER JOIN CoursePlan cp ON b.BatchID = cp.BatchID WHERE cp.DayNumber = ?");
             ps.setInt(1,day);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
                 int b = rs.getInt("BatchID");
                 int d = rs.getInt("DayNumber");
-                String c = rs.getString("Course_Name");
+                String c = rs.getString("CourseName");
                 String f = rs.getString("FacultyName");
                 int n = rs.getInt("NumberOfStudents");
                 String s = rs.getString("Status");
@@ -734,7 +742,7 @@ public class AdminDaoImpl implements AdminDao{
         List<BatchWiseDetails> batchWiseDetails = new ArrayList<>();
 
         try(Connection conn = DBUtility.provideConnection()){
-            PreparedStatement ps = conn.prepareStatement("SELECT b.BatchID,f.FacultyID,f.FacultyName,c.CourseID,c.Course_Name,c.Fee,b.NumberOfStudents,b.BatchStartDate,c.Course_Description FROM Batch b INNER JOIN Course c INNER JOIN Faculty f ON b.CourseID = c.CourseID AND b.FacultyID = f.FacultyID GROUP BY BatchID ORDER BY BatchID");
+            PreparedStatement ps = conn.prepareStatement("SELECT b.BatchID,f.FacultyID,f.FacultyName,c.CourseID,c.CourseName,c.Fee,b.NumberOfStudents,b.BatchStartDate,c.CourseDescription FROM Batch b INNER JOIN Course c INNER JOIN Faculty f ON b.CourseID = c.CourseID AND b.FacultyID = f.FacultyID GROUP BY BatchID ORDER BY BatchID");
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
@@ -742,11 +750,11 @@ public class AdminDaoImpl implements AdminDao{
                 int fid = rs.getInt("facultyid");
                 String fn = rs.getString("facultyname");
                 int cid = rs.getInt("courseid");
-                String cn = rs.getString("course_name");
+                String cn = rs.getString("coursename");
                 int fee = rs.getInt("fee");
                 int nos = rs.getInt("numberofstudents");
                 String bsd = rs.getString("batchstartdate");
-                String cd = rs.getString("course_description");
+                String cd = rs.getString("coursedescription");
                 BatchWiseDetails bdw = new BatchWiseDetails(bid,fn,fid,cid,cn,fee,bsd,nos,cd);
                 batchWiseDetails.add(bdw);
             }

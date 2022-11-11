@@ -6,6 +6,3 @@ public class Main {
         UserActivities.selectUser();
     }
 }
-
-
-
