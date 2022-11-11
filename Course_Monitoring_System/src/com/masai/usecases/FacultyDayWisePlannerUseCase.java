@@ -5,6 +5,7 @@ import com.masai.dao.FacultyDaoImpl;
 import com.masai.exception.FacultyException;
 import com.masai.model.CoursePlan;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FacultyDayWisePlannerUseCase {
@@ -33,6 +34,8 @@ public class FacultyDayWisePlannerUseCase {
             System.out.println(result);
         }catch (FacultyException e){
             System.out.println("Something went wrong...!!");
+        }catch (InputMismatchException e){
+            System.out.println("Enter valid data");
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.masai.dao;
 
+import com.masai.app_execute_section.UserActivities;
 import com.masai.exception.CoursePlanException;
 import com.masai.exception.FacultyException;
 import com.masai.model.CoursePlan;
@@ -11,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -103,6 +105,10 @@ public class FacultyDaoImpl implements FacultyDao{
         }catch (SQLException e){
 
             throw new FacultyException("Needs to be fill every input field");
+        }catch (InputMismatchException e){
+            System.out.println("Invalid input!");
+            System.out.println();
+            System.out.println("Try Again.......!");
         }
         return message;
     }
