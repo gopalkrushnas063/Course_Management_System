@@ -13,3 +13,30 @@ Considering problems in existing system code application is meant that contains 
 <p>Admin can produce accounts for faculties and make course programmed list and add instructors and students numbers to it course list.
 
 Admin can produce course details exploitation course creation kind that consists in fact name, course id, etc. User name, adapt username, password, given name and name, ID.</p>
+<h4>Instructor Module: </h4>
+<p>Faculty can login to their account and do all the work like course plan, day schedule and password reset.</p>
+
+
+
+<table align="center">
+<tbody>
+<tr valign="top">
+<td width="25%" align="center">
+
+<h3>Software Requirements</h3>
+  
+| Command | Description |
+| --- | --- |
+| `Operating System` | Windows 10, Linux, Mac |
+| `Programming Language` | Core Java. |
+| `IDE Used` | Intellij 2022.2 |
+| `Database ` | MySQL 8.0 |
+  
+</td>
+<td width="25%" align="center">
+<h3>Languages and Tools:</h3>
+<p align="left"><img height="100%" src="https://user-images.githubusercontent.com/103574856/201464626-db0569a2-4fde-4cd5-a67b-5e1025af5723.png" alt=""/></p>
+</td>
+</tr>
+</tbody>
+</table>
