@@ -17,6 +17,7 @@ Admin can produce course details exploitation course creation kind that consists
 <p>Faculty can login to their account and do all the work like course plan, day schedule and password reset.</p>
 
 
+<hr>
 
 <table align="center">
 <tbody>
@@ -41,6 +42,7 @@ Admin can produce course details exploitation course creation kind that consists
 </tbody>
 </table>
 
+<hr>
 
 <h3 align="center">MySQL Schema Database Structure</h3>
 <p align="center"><a href="https://github.com/gopalkrushnas063/wasteful-underwear-8541/blob/main/MySQL" target="_blank">MySQL Table And Database Creation File</a></p>
