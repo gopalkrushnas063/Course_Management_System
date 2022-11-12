@@ -44,4 +44,8 @@ Admin can produce course details exploitation course creation kind that consists
 
 <h3 align="center">MySQL Schema Database Structure</h3>
 
-<p align="center"><img src="https://user-images.githubusercontent.com/103574856/201464842-dbe8f685-e77d-486c-b6c6-8a8a4a07184a.png"/></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/103574856/201464920-3e606ecc-0855-4067-9efe-102a8a4d0963.png"/></p>
+
+
+
+
