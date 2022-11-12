@@ -112,4 +112,62 @@ public class FacultyDaoImpl implements FacultyDao{
         }
         return message;
     }
+
+    @Override
+    public String facultyPasswordUpdate(int fid) throws FacultyException {
+        String message = "Unable to update username or password";
+        Scanner sc = new Scanner(System.in);
+
+        boolean flag = true;
+        try (Connection conn = DBUtility.provideConnection()){
+            while (flag){
+                System.out.println("1. Reset your username :");
+                System.out.println("2. Reset your password :");
+                int choice = sc.nextInt();
+
+                switch (choice){
+                    case 1 :
+                        System.out.println("Enter Your New Username :");
+                        String name = sc.next();
+
+
+                        PreparedStatement ps = conn.prepareStatement("UPDATE FACULTY SET USERNAME = ? WHERE FACCULTYID = ?");
+                        ps.setString(1,name);
+                        ps.setInt(2,fid);
+
+                        int x = ps.executeUpdate();
+                        if(x>0){
+                            message = "Username updated successfully ";
+                        }else {
+                            throw new FacultyException("Enter Correct Faculty ID");
+                        }
+                        flag = false;
+                        break;
+                    case 2:
+                        System.out.println("Enter Your New Password");
+                        String pwd = sc.next();
+                        PreparedStatement ps2 = conn.prepareStatement("UPDATE FACULTY SET PASSWORD = ? WHERE  FACULTYID = ?");
+                        ps2.setString(1,pwd);
+                        ps2.setInt(2,fid);
+
+                        int x1 = ps2.executeUpdate();
+                        if(x1>0){
+                            message = "Password updated successfully";
+                        }else {
+                            throw new FacultyException("Enter Correct Faculty ID");
+                        }
+                        flag = false;
+                        break;
+                    default:
+                        System.out.println("Choose the valid options");
+                        flag = true;
+                }
+
+            }
+        }catch (SQLException e){
+            throw new FacultyException("Unable to update username or password");
+
+        }
+        return message;
+    }
 }

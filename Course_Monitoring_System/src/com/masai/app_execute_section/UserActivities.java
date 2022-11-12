@@ -146,9 +146,11 @@ public class UserActivities {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("+-========================================================================-+");
+        System.out.println("|                        * Faculty Main Menu *                             |");
+        System.out.println("+--------------------------------------------------------------------------+");
         System.out.println("| 1.  View The Course Plan                                                 |");
         System.out.println("| 2.  Fill-up The Day wise Plan                                            |");
-        System.out.println("| 3.  Update your password                                                 |");
+        System.out.println("| 3.  Update Your Username/Password                                        |");
         System.out.println("| 4.  Logout                                                               |");
         System.out.println("+-========================================================================-+");
         int choice = 0;
@@ -166,6 +168,10 @@ public class UserActivities {
                 break;
             case 2:
                 FacultyDayWisePlannerUseCase.facultyDayWisePlan();
+                BackAndExitOperationFaculty.backAndExitFaculty();
+                break;
+            case 3:
+                FacultyUsernameOrPasswordChangeUseCase.facultyPwdUnameChange();
                 BackAndExitOperationFaculty.backAndExitFaculty();
                 break;
             case 4:

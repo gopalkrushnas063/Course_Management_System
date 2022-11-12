@@ -11,4 +11,5 @@ public interface FacultyDao {
     public boolean facultyLogin(String username , String password) throws FacultyException;
     public List<FacultyCourseView> viewCoursePlan(int fid) throws CoursePlanException;
     public String dayWisePlan(CoursePlan coursePlan) throws FacultyException;
+    public String facultyPasswordUpdate(int fid) throws FacultyException;
 }
