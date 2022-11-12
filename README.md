@@ -51,9 +51,22 @@ Admin can produce course details exploitation course creation kind that consists
 <p align="center"><img src="https://user-images.githubusercontent.com/103574856/201465160-25232bde-8fdb-4859-abd7-873760a786e3.png" /></p>
 <p>2. Admin Main Menu : </p>
 <p align="center"><img src="https://user-images.githubusercontent.com/103574856/201465190-049ca086-10b2-4bb7-bd29-d55ea07eec88.png" /></p>
-<p>2. Course Section : </p>
+<p>3. Course Section : </p>
 <p align="center"><img src="https://user-images.githubusercontent.com/103574856/201465243-aecb8933-5479-4b05-bc02-5f814992dc4b.png" /></p>
-<p>2. Batch Section : </p>
+<p>4. Batch Section : </p>
 <p align="center"><img src="https://user-images.githubusercontent.com/103574856/201465333-f591c4c1-756a-4fb2-9136-3cb70176ea67.png" /></p>
+
+<p>5. View Registered Batch Details : </p>
+<p align="center"><img src="https://user-images.githubusercontent.com/103574856/201465391-81db5f8f-5448-45bd-bac2-915da5274102.png" /></p>
+
+<p>6. Faculty Details : </p>
+<p align="center"><img src="https://user-images.githubusercontent.com/103574856/201465434-ecbafc50-bfee-49d5-b69b-a25f4a8613c0.png" /></p>
+<p>7. View Day-Wise Batch Details  : </p>
+<p align="center"><img src="https://user-images.githubusercontent.com/103574856/201465482-3ab00ccc-a4a5-492f-bf3e-ee413710a41e.png" /></p>
+<p>8. Faculty Section : </p>
+<p align="center"><img src="https://user-images.githubusercontent.com/103574856/201465535-54e0524d-a5d0-4e66-b3ac-9bac993c1bbe.png" /></p>
+
+
+
 
 
