@@ -9,3 +9,7 @@
 Considering problems in existing system code application is meant that contains 2 modules.</p>
 
 <h3>Project Module Summary :</h3>
+<h4>Administrator Module : </h4>
+<p>Admin can produce accounts for faculties and make course programmed list and add instructors and students numbers to it course list.
+
+Admin can produce course details exploitation course creation kind that consists in fact name, course id, etc. User name, adapt username, password, given name and name, ID.</p>
