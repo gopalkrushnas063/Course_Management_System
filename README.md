@@ -51,5 +51,9 @@ Admin can produce course details exploitation course creation kind that consists
 <p align="center"><img src="https://user-images.githubusercontent.com/103574856/201465160-25232bde-8fdb-4859-abd7-873760a786e3.png" /></p>
 <p>2. Admin Main Menu : </p>
 <p align="center"><img src="https://user-images.githubusercontent.com/103574856/201465190-049ca086-10b2-4bb7-bd29-d55ea07eec88.png" /></p>
+<p>2. Course Section : </p>
+<p align="center"><img src="https://user-images.githubusercontent.com/103574856/201465243-aecb8933-5479-4b05-bc02-5f814992dc4b.png" /></p>
+<p>2. Batch Section : </p>
+<p align="center"><img src="https://user-images.githubusercontent.com/103574856/201465333-f591c4c1-756a-4fb2-9136-3cb70176ea67.png" /></p>
 
 
