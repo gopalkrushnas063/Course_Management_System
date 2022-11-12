@@ -67,6 +67,7 @@ Admin can produce course details exploitation course creation kind that consists
 <p align="center"><img src="https://user-images.githubusercontent.com/103574856/201465535-54e0524d-a5d0-4e66-b3ac-9bac993c1bbe.png" /></p>
 
 
-
+<h3>Conclusion : </h3>
+<p>Course Monitoring System project is developed in java platform. The main aim of this system is to implement an online based mostly portal with education data which is able to be helpful for faculty and admin team. on-line education is one o f the quick growing field on internet wherever users will directly solve issues by visiting web site with none facilitate from academics. This method had inflated scope of on-line education and on-line courses. in conjunction with on-line courses this computer are often updated with alternative data like job updates, on-line communication details, coming events, government job, and tips for teaching.</p>
 
 
