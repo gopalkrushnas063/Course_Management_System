@@ -46,6 +46,7 @@ Admin can produce course details exploitation course creation kind that consists
 
 <p align="center"><img src="https://user-images.githubusercontent.com/103574856/201464920-3e606ecc-0855-4067-9efe-102a8a4d0963.png"/></p>
 
+
 <h3 align="center">Snapshot of the project use process</h3>
 <p>1. Choose an options for login as per role : </p>
 <p align="center"><img src="https://user-images.githubusercontent.com/103574856/201465160-25232bde-8fdb-4859-abd7-873760a786e3.png" /></p>
