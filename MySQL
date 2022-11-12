@@ -1,0 +1,48 @@
+
+
+Table "Faculty" {
+  "FacultyID" int [pk, not null, increment]
+  "FacultyName" varchar(20) [not null]
+  "FacultyAddress" varchar(25) [default: NULL]
+  "Mobile" varchar(15) [default: NULL]
+  "EMAIL" varchar(30) [default: NULL]
+  "Username" varchar(20) [not null]
+  "Password" varchar(15) [not null]
+}
+
+Table "Admin" {
+  "Username" varchar(20) [pk, not null]
+  "Password" varchar(15) [not null]
+}
+
+
+Table "Course" {
+  "CourseID" int [pk, increment]
+  "CourseName" varchar(20) [not null]
+  "Fee" int [not null]
+  "CourseDescription" varchar(50)
+}
+
+Table "Batch" {
+  "BatchID" int [pk, increment]
+  "CourseID" int
+  "FacultyID" int
+  "NumberOfStudents" int
+  "BatchStartDate" date
+  "Duration" varchar(20)
+}
+
+Table "CoursePlan" {
+  "PlanID" int [pk, increment]
+  "BatchID" int
+  "DayNumber" int
+  "topic" varchar(20)
+  "status" varchar(8)
+}
+
+
+Ref: "Batch"."BatchID" < "CoursePlan"."BatchID"
+
+Ref: "Batch"."CourseID" < "Course"."CourseID"
+
+Ref: "Batch"."FacultyID" < "Faculty"."FacultyID"
