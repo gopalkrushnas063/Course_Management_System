@@ -1,7 +1,8 @@
-<h2 align="center">✩░▒▓▆▅▃▂▁𝐂𝐨𝐮𝐫𝐬𝐞 𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠 𝐒𝐲𝐬𝐭𝐞𝐦▁▂▃▅▆▓▒░✩</h2>
+<h2 align="center">✩░▒▓▆▅▃▂▁📚𝐂𝐨𝐮𝐫𝐬𝐞 𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠 𝐒𝐲𝐬𝐭𝐞𝐦📚▁▂▃▅▆▓▒░✩</h2>
 
-<h2>Project Summary :</h2>
-<p>The main objective of creating this project is how an administrator can provide course, batch, and daily schedules to all his faculty so that the faculty does not face any problems in getting the course, batch, and daily plan regularly and on time without any issue.</p>
+<h2>Project Summary 📚 :</h2>
+<img align="left" width="153" src="https://user-images.githubusercontent.com/103574856/201480468-b2847a02-a749-44ef-89c5-1f91dbf7c1d3.png"/>
+The main objective of creating this project is how an administrator can provide course, batch, and daily schedules to all his faculty so that the faculty does not face any problems in getting the course, batch, and daily plan regularly and on time without any issue.
 
 <h3>System Summary :</h3>
 <p>For every education or course there should be consistent interaction between faculty for assigning batch and course, daily plan, etc. In this exiting system faculty need to visit faculty section and see as per the requirements.
