@@ -1,4 +1,4 @@
-<h1 align="center">Course Monitoring System</h1>
+<h1 align="center">✩░▒▓▆▅▃▂▁𝐂𝐨𝐮𝐫𝐬𝐞 𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠 𝐒𝐲𝐬𝐭𝐞𝐦▁▂▃▅▆▓▒░✩</h1>
 
 <h2>Project Summary :</h2>
 <p>The main objective of creating this project is how an administrator can provide course, batch, and daily schedules to all his faculty so that the faculty does not face any problems in getting the course, batch, and daily plan regularly and on time without any issue.</p>
@@ -73,4 +73,6 @@ Admin can produce course details exploitation course creation kind that consists
 <h3>Conclusion : </h3>
 <p>Course Monitoring System project is developed in java platform. The main aim of this system is to implement an online based mostly portal with education data which is able to be helpful for faculty and admin team. on-line education is one o f the quick growing field on internet wherever users will directly solve issues by visiting web site with none facilitate from academics. This method had inflated scope of on-line education and on-line courses. in conjunction with on-line courses this computer are often updated with alternative data like job updates, on-line communication details, coming events, government job, and tips for teaching.</p>
 
+<br>
 
+<p align="center">✩░▒▓▆▅▃▂▁𝐓𝐡𝐚𝐧𝐤 𝐘𝐨𝐮▁▂▃▅▆▓▒░✩</p>
