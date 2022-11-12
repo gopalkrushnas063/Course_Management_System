@@ -1,4 +1,4 @@
-<h1 align="center">✩░▒▓▆▅▃▂▁𝐂𝐨𝐮𝐫𝐬𝐞 𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠 𝐒𝐲𝐬𝐭𝐞𝐦▁▂▃▅▆▓▒░✩</h1>
+<h2 align="center">✩░▒▓▆▅▃▂▁𝐂𝐨𝐮𝐫𝐬𝐞 𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠 𝐒𝐲𝐬𝐭𝐞𝐦▁▂▃▅▆▓▒░✩</h2>
 
 <h2>Project Summary :</h2>
 <p>The main objective of creating this project is how an administrator can provide course, batch, and daily schedules to all his faculty so that the faculty does not face any problems in getting the course, batch, and daily plan regularly and on time without any issue.</p>
