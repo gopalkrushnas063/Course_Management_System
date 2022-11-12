@@ -28,10 +28,10 @@ Admin can produce course details exploitation course creation kind that consists
   
 | Command | Description |
 | --- | --- |
-| `Operating System` | Windows 10, Linux, Mac |
-| `Programming Language` | Core Java. |
-| `IDE Used` | Intellij 2022.2 |
-| `Database ` | MySQL 8.0 |
+| Operating System | Windows 10, Linux, Mac |
+| Programming Language | Core Java. |
+| IDE Used | Intellij 2022.2 |
+| Database  | MySQL 8.0 |
   
 </td>
 <td width="25%" align="center">
