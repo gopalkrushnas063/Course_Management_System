@@ -75,4 +75,4 @@ Admin can produce course details exploitation course creation kind that consists
 
 <br>
 
-<p align="center">✩░▒▓▆▅▃▂▁𝐓𝐡𝐚𝐧𝐤 𝐘𝐨𝐮▁▂▃▅▆▓▒░✩</p>
+<h2 align="center">✴.·´¯`·.·★  🎀Thank You🎀  ★·.·`¯´·.✴</h2>
