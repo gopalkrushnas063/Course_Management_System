@@ -121,8 +121,8 @@ public class FacultyDaoImpl implements FacultyDao{
         boolean flag = true;
         try (Connection conn = DBUtility.provideConnection()){
             while (flag){
-                System.out.println("1. Reset your username :");
-                System.out.println("2. Reset your password :");
+                System.out.println("1. Reset your username ");
+                System.out.println("2. Reset your password ");
                 int choice = sc.nextInt();
 
                 switch (choice){
@@ -131,7 +131,7 @@ public class FacultyDaoImpl implements FacultyDao{
                         String name = sc.next();
 
 
-                        PreparedStatement ps = conn.prepareStatement("UPDATE FACULTY SET USERNAME = ? WHERE FACCULTYID = ?");
+                        PreparedStatement ps = conn.prepareStatement("UPDATE FACULTY SET USERNAME = ? WHERE FACULTYID = ?");
                         ps.setString(1,name);
                         ps.setInt(2,fid);
 
